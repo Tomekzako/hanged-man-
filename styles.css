@@ -43,3 +43,31 @@ body {
     cursor: pointer;
     border-radius: 10px;
 }
+
+.letter:hover {
+    background-color: #222;
+    color: #fff;
+    border: 3px solid #fff;
+}
+
+.letter-success {
+    border: 3px solid greenyellow;
+}
+
+.letter-success:hover {
+    cursor: default;
+    border: 3px solid greenyellow;
+    background-color: #000;
+    color: lightgray;
+}
+
+.letter-fail {
+    border: 3px solid red;
+}
+
+.letter-fail:hover {
+    cursor: default;
+    border: 3px solid red;
+    background-color: #000;
+    color: lightgray;
+}

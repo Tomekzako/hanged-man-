@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-  const password = "Bez pracy nie ma kołaczy".toUpperCase();
+  const password = "andre greipel".toUpperCase();
   const alphabetBox = document.querySelector(".alphabet");
   let hiddenPassword = "";
   let counter = 0;
@@ -15,6 +15,22 @@ document.addEventListener("DOMContentLoaded", function() {
   function writePassword() {
     document.querySelector(".board").innerHTML = hiddenPassword;
   }
+
+  const hiddenPasswordArr = hiddenPassword.split('');
+
+
+  function checkLetter(letter) {
+    const passwordArr = password.split('');
+    passwordArr.forEach((el, index) => {
+      if (el == letter) {
+        hiddenPasswordArr[index] = letter;
+      }
+    });
+    if (hiddenPasswordArr.indexOf('-') == -1) {
+      alphabetBox.innerHTML = `<p>CONGRATULATIONS!!!! YOU HAVE WON!</p>`;
+    };
+    document.querySelector(".board").innerHTML = hiddenPasswordArr.join('');
+  };
 
   function init() {
     const alphabet = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzżź"
@@ -32,9 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function showImage(number) {
-    document.querySelector(
-      ".hang"
-    ).innerHTML = `<img src="img/s${number}.jpg" alt="image ${number}">`;
+    document.querySelector(".hang").innerHTML = `<img src="img/s${number}.jpg" alt="image ${number}">`;
   }
 
   function clickLetter(e) {
@@ -47,10 +61,14 @@ document.addEventListener("DOMContentLoaded", function() {
     )
       return;
 
+      checkLetter(letter.textContent);
+    
     for (el in password) {
-      const match = password[el] == letter.textContent;
+      const match = password.charAt(el) == letter.textContent;
+      const match2 = password.charAt(el).match(letter.textContent);
       lettersArray.push(match);
     }
+    console.log(letter.textContent);
 
     if (lettersArray.includes(true)) {
       letter.classList.add("letter-success");

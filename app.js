@@ -40,7 +40,12 @@ document.addEventListener("DOMContentLoaded", function() {
   function clickLetter(e) {
     const lettersArray = [];
     const letter = e.target;
-    if (!letter.matches(".letter")) return;
+    if (
+      !letter.matches(".letter") ||
+      letter.matches(".letter-fail") ||
+      letter.matches(".letter-success")
+    )
+      return;
 
     for (el in password) {
       const match = password[el] == letter.textContent;
